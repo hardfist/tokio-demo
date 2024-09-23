@@ -1,6 +1,6 @@
 use std::time::{Duration, Instant};
 
-use tokio::spawn;
+use tokio::{runtime::Handle, spawn, task::block_in_place};
 fn blocking_cpu_task() {}
 fn blocking_io_task() {
     std::thread::sleep(Duration::from_secs(10));
@@ -9,6 +9,18 @@ fn blocking_io_task() {
 #[tokio::main(worker_threads = 2)]
 async fn main() -> anyhow::Result<()> {
     console_subscriber::init();
+    // tokio::spawn(
+        
+    //     async move {
+    //         let monitor = tokio_metrics::TaskMonitor::new();
+    //          let frequency = std::time::Duration::from_millis(500);
+    //          for metrics in monitor.intervals() {
+    //             println!("{:?}", metrics);
+    //             tokio::time::sleep(frequency).await;
+    //         }
+    //     }
+    // );
+    
     let start = Instant::now();
     let t1 = tokio::task::Builder::new().name("t1").spawn(async {
         blocking_io_task();

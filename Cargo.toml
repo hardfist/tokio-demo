@@ -8,3 +8,4 @@ tokio = { version = "1", features = ["full"]}
 rayon = "*"
 console-subscriber = "*"
 anyhow = "*"
+tokio-metrics = "*"
