@@ -1,6 +1,9 @@
 use std::time::{Duration, Instant};
 
-use tokio::{spawn, task::{block_in_place, spawn_blocking}};
+use tokio::{
+    spawn,
+    task::{block_in_place, spawn_blocking},
+};
 fn blocking_cpu_task() {}
 fn blocking_io_task() {
     std::thread::sleep(Duration::from_secs(1));
@@ -12,17 +15,20 @@ async fn main() {
     let t1 = spawn(async {
         spawn_blocking(|| {
             blocking_io_task();
-        }).await
+        })
+        .await
     });
     let t2 = spawn(async {
         spawn_blocking(|| {
             blocking_io_task();
-        }).await
+        })
+        .await
     });
     let t3 = spawn(async {
         spawn_blocking(|| {
             blocking_io_task();
-        }).await
+        })
+        .await
     });
     let _t = tokio::join!(t1, t2, t3);
     let duration = start.elapsed().as_secs();

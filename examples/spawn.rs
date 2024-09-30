@@ -10,7 +10,7 @@ fn blocking_io_task() {
 async fn main() -> anyhow::Result<()> {
     console_subscriber::init();
     // tokio::spawn(
-        
+
     //     async move {
     //         let monitor = tokio_metrics::TaskMonitor::new();
     //          let frequency = std::time::Duration::from_millis(500);
@@ -20,7 +20,7 @@ async fn main() -> anyhow::Result<()> {
     //         }
     //     }
     // );
-    
+
     let start = Instant::now();
     let t1 = tokio::task::Builder::new().name("t1").spawn(async {
         blocking_io_task();
