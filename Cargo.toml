@@ -6,6 +6,7 @@ edition = "2021"
 [dependencies]
 tokio = { version = "1", features = ["full"]}
 rayon = "*"
-console-subscriber = "*"
-anyhow = "*"
-tokio-metrics = "*"
+console-subscriber = "0.4.0"
+anyhow = "1.0.97"
+tokio-metrics = "0.4.0"
+pollster = "0.4.0"
